@@ -32,7 +32,7 @@ library(lubridate)
 
 options(OutDec = ",")
 
-setwd("C:/Users/User/Documents/Observatório PUC Camp/Informativos/Informativos RMC")
+setwd("C:/Users/User/Downloads/Iniciação Científica prof paulo/Rotinas-Informativo-Mensal/Rotinas RMC")
 ```
 
 ```{r}

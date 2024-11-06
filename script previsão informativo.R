@@ -67,7 +67,7 @@ layout_camp <- layout_camp %>%
   ungroup()
 
 # substituir o endereco abaixo pela pasta utilizada na sua máquina para o sync com o github 
-setwd("C://Users//User//Documents//Observatório PUC Camp//Projects//Bancos-de-dados")
+setwd("C:/Users/User/Downloads/Iniciação Científica prof paulo/Bancos-de-dados")
 
 write.csv2(layout_rmc, "base_rmc.csv", row.names = FALSE) # base final RMC
 write.csv2(layout_camp, "base_camp.csv", row.names = FALSE) # base final Campinas  
