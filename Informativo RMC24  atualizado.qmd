@@ -9,8 +9,8 @@ warning: false
 
 ```{r}
 # Definir mês e ano do informativo
-mes_num <- 03
-mes_nom <- "março"
+mes_num <- 08
+mes_nom <- "agosto"
 
 ano_atual <- 2024
 ano_inic <- 2014
@@ -32,7 +32,7 @@ library(lubridate)
 
 options(OutDec = ",")
 
-setwd("C:/Users/User/Downloads/Iniciação Científica prof paulo/Rotinas-Informativo-Mensal/Rotinas RMC")
+setwd("C:/Users/malve/Documents/Observatório PUC Camp/Informativos/Informativos RMC")
 ```
 
 ```{r}
@@ -201,7 +201,7 @@ PartExpEstadoSP <- tb1[11, 3]
 # Código para montagem da tabela 2
 # Exportações Regionais por Grau de Complexidade Econômica
 
-tb2<- sp_trade %>%
+tb2 <- sp_trade %>%
   filter(CO_MES==mes_num, RMC==1, CO_ANO>=ano_atual-1) %>%
   left_join(pci_db)  %>%
   mutate(`Grau de Complexidade`=replace_na(`Grau de Complexidade`,"IN")) %>%
@@ -755,106 +755,5 @@ tb10 <- sp_trade %>%
     `% Var`=round((`2024`-`2023`)/`2023`,4)) %>%
   select(-`2024`,-`2023`)
 
-
-```
-
-```{r}
-ncm_pt <- read.csv2(url("https://github.com/malvejl/Projects-PUCC/raw/main/NCMPT.csv"), encoding = "latin1")
-ncm_pt <- ncm_pt %>% 
-  mutate(SH4 = as.factor(SH4))
-
-tb12 <- sp_imp %>% 
-  filter(CO_MUN == 3401608|
-           CO_MUN==3403802|
-                                            CO_MUN==3409502|
-                                            CO_MUN==3412803|
-                                            CO_MUN==3415152|
-                                            CO_MUN==3419055|
-                                            CO_MUN==3419071|
-                                            CO_MUN==3420509|
-                                            CO_MUN==3423404|
-                                            CO_MUN==3424709|
-                                            CO_MUN==3431803|
-                                            CO_MUN==3432009|
-                                            CO_MUN==3433403|
-                                            CO_MUN==3436505|
-                                            CO_MUN==3437107|
-                                            CO_MUN==3445803|
-                                            CO_MUN==3448005|
-                                            CO_MUN==3452403|
-                                            CO_MUN==3456206|
-                                            CO_MUN==3456701, CO_ANO==ano_atual-1 & CO_MES > mes_num | 
-           CO_ANO==ano_atual & CO_MES <= mes_num) %>% 
-  select(-SG_UF_MUN, -CO_MUN, -KG_LIQUIDO) %>% 
-  left_join(co_pais) %>% 
-  group_by(CO_PAIS, SH4, NO_PAIS) %>% 
-  summarise(VL_FOB_IMP = sum(VL_FOB_IMP)) %>% 
-  ungroup() %>% 
-  group_by(CO_PAIS, NO_PAIS) %>% 
-  arrange(desc(VL_FOB_IMP), .by_group = TRUE) %>% 
-  slice_max(VL_FOB_IMP, n = 3) %>% 
-  ungroup() %>% 
-  select(-CO_PAIS) %>% 
-  left_join(ncm_pt) %>%
-  mutate(VL_FOB_IMP = round(VL_FOB_IMP/1000000, digits = 2)) %>% 
-  rename(País = NO_PAIS, `Importações por produto 12 meses` = VL_FOB_IMP) %>% 
-  left_join(tb8_new2) %>% 
-  select(-`Participação 12 meses`, - `Variação 12 meses`) %>% 
-  mutate(`Participação produto/país 12 meses %` = round((`Importações por produto 12 meses`/ `Importações 12 meses`)*100, 2)) %>% 
-  rename(NCM = SH4, Produto = NCM_curto) %>% 
-  select(NCM, Produto, everything()) %>% 
-  arrange(desc(`Importações 12 meses`), .by_group = TRUE)
-
-
-tb12 %>%
-  flextable
-
-```
-
-```{r}
-tb13 <- sp_exp %>% 
-  filter(CO_MUN == 3401608|
-           CO_MUN==3403802|
-                                            CO_MUN==3409502|
-                                            CO_MUN==3412803|
-                                            CO_MUN==3415152|
-                                            CO_MUN==3419055|
-                                            CO_MUN==3419071|
-                                            CO_MUN==3420509|
-                                            CO_MUN==3423404|
-                                            CO_MUN==3424709|
-                                            CO_MUN==3431803|
-                                            CO_MUN==3432009|
-                                            CO_MUN==3433403|
-                                            CO_MUN==3436505|
-                                            CO_MUN==3437107|
-                                            CO_MUN==3445803|
-                                            CO_MUN==3448005|
-                                            CO_MUN==3452403|
-                                            CO_MUN==3456206|
-                                            CO_MUN==3456701, CO_ANO==ano_atual-1 & CO_MES > mes_num | 
-           CO_ANO==ano_atual & CO_MES <= mes_num) %>% 
-  select(-SG_UF_MUN, -CO_MUN, -KG_LIQUIDO) %>% 
-  left_join(co_pais) %>% 
-  group_by(CO_PAIS, SH4, NO_PAIS) %>% 
-  summarise(VL_FOB_EXP = sum(VL_FOB_EXP)) %>% 
-  ungroup() %>% 
-  group_by(CO_PAIS, NO_PAIS) %>% 
-  arrange(desc(VL_FOB_EXP), .by_group = TRUE) %>% 
-  slice_max(VL_FOB_EXP, n = 3) %>% 
-  ungroup() %>% 
-  select(-CO_PAIS) %>% 
-  left_join(ncm_pt) %>%
-  mutate(VL_FOB_EXP = round(VL_FOB_EXP/1000000, digits = 2)) %>% 
-  rename(País = NO_PAIS, `Exportações por produto 12 meses` = VL_FOB_EXP) %>% 
-  left_join(tb7_new2) %>% 
-  select(-`Participação 12 meses`, - `Variação 12 meses`) %>% 
-  mutate(`Participação produto/país 12 meses %` = round((`Exportações por produto 12 meses`/ `Exportações 12 meses`)*100, 2)) %>% 
-  rename(NCM = SH4, Produto = NCM_curto) %>% 
-  select(NCM, Produto, everything()) %>% 
-  arrange(desc(`Exportações 12 meses`), .by_group = TRUE)
-
-tb13 %>%
-  flextable
 
 ```
