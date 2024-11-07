@@ -9,8 +9,8 @@ warning: false
 
 ```{r}
 # Definir mês e ano do informativo
-mes_num <- 08
-mes_nom <- "agosto"
+mes_num <- 10
+mes_nom <- "outubro"
 
 ano_atual <- 2024
 ano_inic <- 2014
@@ -32,7 +32,7 @@ library(lubridate)
 
 options(OutDec = ",")
 
-setwd("C:/Users/malve/Documents/Observatório PUC Camp/Informativos/Informativos RMC")
+setwd("C:/Users/User/Downloads/Iniciação Científica prof paulo/Rotinas-Informativo-Mensal/Rotinas RMC")
 ```
 
 ```{r}
