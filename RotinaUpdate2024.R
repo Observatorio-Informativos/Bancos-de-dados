@@ -6,7 +6,7 @@ library(curl)
 library(rlang)
 
 # estabelecendo o diretório de trabalho (conectado com github)
-setwd("C:/Users/User/Documents/Observatório PUC Camp/Projects/Bancos-de-dados")
+setwd("C:/Users/User/Downloads/Iniciação Científica prof paulo/Bancos-de-dados")
 
 # Variáveis de seleção 
 ano_final = 2024

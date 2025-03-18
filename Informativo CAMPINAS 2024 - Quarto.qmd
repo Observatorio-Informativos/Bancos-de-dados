@@ -2,7 +2,7 @@
 title: "Informativo Campinas - padrão quarto"
 format: 
   docx: 
-    reference-doc: modelo_informativo_rmc.docx
+    reference-doc: C:/Users/User/Downloads/Iniciação Científica prof paulo/Bancos-de-dados/modelo_informativo_campinas.docx
 echo: false
 warning: false
 editor: visual
@@ -32,7 +32,7 @@ library(lubridate)
 
 options(OutDec = ",")
 
-setwd("C:/Users/User/Documents/Observatório PUC Camp/Informativos/Informativos Campinas")
+setwd("C:/Users/User/Downloads/Iniciação Científica prof paulo/Rotinas-Informativo-Mensal/Rotinas Campinas")
 ```
 
 ```{r}

@@ -1,5 +1,4 @@
 # Rotina de previsão dos dados de comércio da RMC e da PMC
-
 library(rio)
 library(dplyr)
 
@@ -114,7 +113,7 @@ plot(ts_exp_RMC.hw) #Gráfico da linha de previsão
 #Previsão até dezembro de 2024
 # substituir o número abaixo, n.ahead, pelo número de meses restante para a análise
 # se os dados mais recentes são de fevereiro entao são 10 meses restantes ao fim de ano
-ts_exp_RMC.hw_predict <- predict(ts_exp_RMC.hw, n.ahead= 10)
+ts_exp_RMC.hw_predict <- predict(ts_exp_RMC.hw, n.ahead= 4)
 
 ts.plot(ts_exp_RMC, ts_exp_RMC.hw_predict, lty= 1:2) #Gráfico da previsão com o realizado 
 
@@ -129,7 +128,7 @@ plot(ts_imp_RMC.hw) #Gráfico da linha de previsão
 #Previsão até dezembro de 2024
 # substituir o número abaixo, n.ahead, pelo número de meses restante para a análise
 # se os dados mais recentes são de fevereiro entao são 10 meses restantes ao fim de ano
-ts_imp_RMC.hw_predict <- predict(ts_imp_RMC.hw, n.ahead = 10)
+ts_imp_RMC.hw_predict <- predict(ts_imp_RMC.hw, n.ahead = 4)
 
 ts.plot(ts_imp_RMC, ts_imp_RMC.hw_predict, lty = 1:2) #Gráfico da previsão com o realizado 
 
@@ -223,7 +222,7 @@ ts_exp_CAMP.hw <- HoltWinters(ts_exp_CAMP, seasonal= "add") #no último exercíc
 plot(ts_exp_CAMP.hw) #Gráfico da linha de previsão
 
 #Previsão até dezembro de 2023
-ts_exp_CAMP.hw_predict <- predict(ts_exp_CAMP.hw, n.ahead = 11)
+ts_exp_CAMP.hw_predict <- predict(ts_exp_CAMP.hw, n.ahead = 4)
 
 ts.plot(ts_exp_CAMP, ts_exp_CAMP.hw_predict, lty= 1:2) #Gráfico da previsão com o realizado 
 
@@ -236,7 +235,7 @@ ts_imp_CAMP.hw <- HoltWinters(ts_imp_CAMP, seasonal= "add") #no último exercíc
 plot(ts_imp_CAMP.hw) #Gráfico da linha de previsão
 
 #Previsão até dezembro de 2023
-ts_imp_CAMP.hw_predict <- predict(ts_imp_CAMP.hw, n.ahead = 11)
+ts_imp_CAMP.hw_predict <- predict(ts_imp_CAMP.hw, n.ahead = 4)
 
 ts.plot(ts_imp_CAMP, ts_imp_CAMP.hw_predict, lty = 1:2) #Gráfico da previsão com o realizado 
 
